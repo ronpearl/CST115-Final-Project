@@ -9,8 +9,5 @@
 *.ear
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-<<<<<<< HEAD
 hs_err_pid*
-=======
-hs_err_pid*
->>>>>>> 7f1c01a0b6381290280d82ecd4479ae7cac46ad7
+
