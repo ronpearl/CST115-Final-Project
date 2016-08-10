@@ -1,3 +1,3 @@
-# CST115-Ronald-Pearl
+# CST115 Final Project
 
 CST-115 Class Files
