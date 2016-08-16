@@ -31,11 +31,15 @@ public abstract class Product {
 	}
 	
 	//constructor, requires name and ID (default to $0.00 price and 1 quantity?)
-	public Product(String productName, int productId){
+	public Product(String productName, double price, int quantity, int productId){
 		
 	}
 	
 	//setter methods
+	public void setProductName(String name) {
+		this.productName = name;
+	}
+	
 	public void setProductId(int productId){
 		
 	}
@@ -49,21 +53,25 @@ public abstract class Product {
 	}
 	
 	//getter methods
+	public String getName() {
+		return productName;
+	}
+	
 	public int getProductId(){
-		
+		return productId;
 	}
 	
 	public double getPrice(){
-		
+		return price;
 	}
 	
 	public int getQuantity(){
-		
+		return quantity;
 	}
 	
 	@Override
 	public String toString(){
-		
+		return "";
 	}
 
 }

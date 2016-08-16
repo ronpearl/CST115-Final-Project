@@ -2,7 +2,6 @@ package Final_Project;
 
 public class Gum extends Snack {
 
-	protected String name;
 	protected String packSize; //small, medium or large packaging
 	protected boolean sugarFree; //true = sugar free
 	
@@ -11,23 +10,17 @@ public class Gum extends Snack {
 		
 	}
 	
-	public Gum(String name, String packSize, boolean sugarFree){
-		this.name = name;
+	public Gum(String packSize, boolean sugarFree){
 		this.packSize = packSize;
 		this.sugarFree = sugarFree;
 	}
 	
 	public Gum(Gum gum){
-		this.name = gum.getName();
 		this.packSize = gum.getPackSize();
 		this.sugarFree = gum.getSugarFree();
 	}
 	
 	//setter methods
-	public void setName(String name) {
-		this.name = name;
-	}
-	
 	public void setPackSize(String packSize){
 		this.packSize = packSize;
 	}
@@ -37,10 +30,6 @@ public class Gum extends Snack {
 	}
 	
 	//getter methods
-	public String getName() {
-		return this.name;
-	}
-	
 	public String getPackSize(){
 		return this.packSize;
 	}
@@ -51,6 +40,6 @@ public class Gum extends Snack {
 	
 	@Override
 	public String toString(){
-		return "Name: " + this.name + "Pack Size: " + this.packSize + ", Sugar Free: " + this.sugarFree;
+		return "Pack Size: " + this.packSize + ", Sugar Free: " + this.sugarFree;
 	}
 }
