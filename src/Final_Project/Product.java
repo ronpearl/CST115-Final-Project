@@ -18,12 +18,17 @@
 
 package Final_Project;
 
-public class Product {
+public abstract class Product {
 	
 	private String productName; //name of product
 	private double price; //price of product
 	private int quantity; //quantity available of product
 	private int productId; //unique ID for product (used for tracking)
+	
+	//no-arg constructor
+	public Product(){
+		
+	}
 	
 	//constructor, requires name and ID (default to $0.00 price and 1 quantity?)
 	public Product(String productName, int productId){
@@ -56,5 +61,8 @@ public class Product {
 		
 	}
 	
+	public String toString(){
+		
+	}
 
 }
