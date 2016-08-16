@@ -1,6 +1,6 @@
 /**
  * 	Program:	Vending Machine
- * 	Authors:	Ronald Pearl, Aaron Fonseca --- ADD YOUR NAMES HERE
+ * 	Authors:	Ronald Pearl, Aaron Fonseca, Kris Hayes
  * 	Summary:	Final Project for CST-115 class
  * 	Date:		8/8/16 - 9/25/16
  * 	Description:
