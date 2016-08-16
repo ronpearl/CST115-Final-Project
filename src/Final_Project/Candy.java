@@ -23,7 +23,7 @@ public class Candy extends Snack {
 	
 	@Override
 	public String toString() {
-		return "OUnces: " + this.ounces;
+		return "";
 	}
 	
 

@@ -22,6 +22,6 @@ public class Chips extends Snack {
 	
 	@Override
 	public String toString(){
-		return "Name: " + this.name;
+		return "";
 	}
 }
