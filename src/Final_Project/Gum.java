@@ -2,26 +2,32 @@ package Final_Project;
 
 public class Gum extends Snack {
 
-	private String packSize; //small, medium or large packaging
-	private boolean sugarFree; //true = sugar free
+	protected String name;
+	protected String packSize; //small, medium or large packaging
+	protected boolean sugarFree; //true = sugar free
 	
 	//no-arg constructor
 	public Gum(){
 		
 	}
 	
-	public Gum(String packSize, boolean sugarFree){
+	public Gum(String name, String packSize, boolean sugarFree){
+		this.name = name;
 		this.packSize = packSize;
 		this.sugarFree = sugarFree;
 	}
 	
 	public Gum(Gum gum){
-		
+		this.name = gum.getName();
 		this.packSize = gum.getPackSize();
 		this.sugarFree = gum.getSugarFree();
 	}
 	
 	//setter methods
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public void setPackSize(String packSize){
 		this.packSize = packSize;
 	}
@@ -31,16 +37,20 @@ public class Gum extends Snack {
 	}
 	
 	//getter methods
+	public String getName() {
+		return this.name;
+	}
+	
 	public String getPackSize(){
-		return packSize;
+		return this.packSize;
 	}
 	
 	public boolean getSugarFree(){
-		return sugarFree;
+		return this.sugarFree;
 	}
 	
 	@Override
 	public String toString(){
-		
+		return "Name: " + this.name + "Pack Size: " + this.packSize + ", Sugar Free: " + this.sugarFree;
 	}
 }

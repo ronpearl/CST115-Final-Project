@@ -19,6 +19,8 @@
 
 package Final_Project;
 
+import java.util.ArrayList;
+
 public class Dispenser {
 
 		private int inventoryCount; // Number of Product Objects in vending machine

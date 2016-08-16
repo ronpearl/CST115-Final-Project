@@ -1,23 +1,24 @@
 package Final_Project;
 
-public abstract class Snack extends Product{
+public abstract class Snack extends Product {
 
 	private 
 	
 	//no-arg constructor
-	public Snack(){
+	public Snack() {
 		
 	}
 	
-	public Snack(){
+	public Snack() {
 		
 	}
 	
-	public Snack(Snack snack){
+	public Snack(Snack snack) {
 		
 	}
 	
-	public String toString(){
+	@Override
+	public String toString() {
 		
 	}
 
