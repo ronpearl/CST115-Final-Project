@@ -42,6 +42,6 @@ public class Gum extends Snack {
 	
 	@Override
 	public String toString(){
-		return super.toString() + "Pack Size: " + this.packSize + ", Sugar Free: " + this.sugarFree;
+		return super.toString() + " Pack Size: " + this.packSize + ", Sugar Free: " + this.sugarFree;
 	}
 }

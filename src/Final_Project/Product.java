@@ -32,7 +32,10 @@ public abstract class Product {
 	
 	//constructor, requires name and ID (default to $0.00 price and 1 quantity?)
 	public Product(String productName, double price, int quantity, int productId){
-		
+		this.productName = productName;
+		this.price = price;
+		this.quantity = quantity;
+		this.productId = productId;
 	}
 	
 	//setter methods

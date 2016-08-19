@@ -32,7 +32,7 @@ public abstract class Snack extends Product {
 	
 	@Override
 	public String toString() {
-		return super.toString() + ", Calroies: " + calories;
+		return super.toString() + ", Calories: " + calories;
 	}
 
 }

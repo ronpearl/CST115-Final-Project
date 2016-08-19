@@ -25,9 +25,9 @@ public class VendingMachine {
 		testDisp.addProduct(new Candy("Reeses", 2.09, 1, 2435, 240, 1));
 		testDisp.addProduct(new Gum("Trident", 0.89, 1, 9999, 5, "Medium", true));
 		testDisp.addProduct(new Drink("Coke", 1.49, 1, 1111, 12));
-		
+				
 		//display Products in a String
-		System.out.print(testDisp.displayProducts());
+		System.out.print(testDisp.getProducts());
 		
 	}
 }
