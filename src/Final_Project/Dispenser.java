@@ -25,10 +25,9 @@ public class Dispenser {
 
 		private ArrayList<Product> products = new ArrayList();
 		private int maxProducts = 40;
-		private int inventoryCount; // Number of Product Objects in vending machine
-		private int objCount; // Number of Specific product in vending machine
+		private int maxProductsPerRow = 10;
+		
 		private String[] objType = new String[20]; // Type of product in vending machine
-		private String[] location = new String[40]; // Location of product 40 spots (e.g. E8)
 		private float balance; // Amount of money for transaction
 		private float moneyInMachine; // Amount of money in vending machine
 		private String status; // Status of vending machine
@@ -56,8 +55,13 @@ public class Dispenser {
 			if (dispenserFull()) {
 				System.out.println("Dispenser is full. Maximum number of products is " + maxProducts);
 			} else {
-				// Add it to the ArrayList
-				products.add(product);
+				// Check that the row isn't full
+				if (product.getQuantity() > 10) {
+					System.out.println("Cannot have more than " + maxProductsPerRow + " items in each row");
+				} else {
+					// Add it to the ArrayList
+					products.add(product);
+				}
 			}
 		}
 		
@@ -96,7 +100,11 @@ public class Dispenser {
 
 		// Setters
 		public void setMaxProducts(int max) {
-			this.maxProducts = max;
+			maxProducts = max;
+		}
+		
+		public void setMaxProductsPerRow(int max) {
+			maxProductsPerRow = max;
 		}
 		
 		// Set Product to location
@@ -110,7 +118,29 @@ public class Dispenser {
 //		}
 		
 		// Getters
-		public String getProducts(){
+		public ArrayList<Product> getProducts() {
+			return products;
+		}
+		
+		public int getMaxProducts() {
+			return maxProducts;
+		}
+		
+		public int getMaxProductsPerRow() {
+			return maxProductsPerRow;
+		}
+		
+		public int getTotalProductCount() {
+			int tempCount = 0;
+			
+			for (Product prods : products) {
+				tempCount += prods.getQuantity();
+			}
+			
+			return tempCount;
+		}
+		
+		public String getProductsToString(){
 			String tempProds = "";
 			
 			for(int i = 0; i < products.size(); i++){

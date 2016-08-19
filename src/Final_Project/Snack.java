@@ -9,14 +9,14 @@ public abstract class Snack extends Product {
 		
 	}
 	
-	public Snack(String productName, double price, int quantity, int productId, int calories) {
-		super(productName, price, quantity, productId);
+	public Snack(String productName, double price, int quantity, String dispenseLocation, int productId, int calories) {
+		super(productName, price, quantity, dispenseLocation, productId);
 		this.calories = calories;
 	}
 	
 	//replicate an existing Snack object
 	public Snack(Snack snack) {
-		super(snack.getName(), snack.getPrice(), snack.getQuantity(), snack.getProductId());
+		super(snack.getName(), snack.getPrice(), snack.getQuantity(), snack.getDispenseLocation(), snack.getProductId());
 		this.calories = snack.getCalories();
 	}
 	

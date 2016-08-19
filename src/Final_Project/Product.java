@@ -20,10 +20,11 @@ package Final_Project;
 
 public abstract class Product {
 	
-	private String productName; //name of product
-	private double price; //price of product
-	private int quantity; //quantity available of product
-	private int productId; //unique ID for product (used for tracking)
+	private String productName; 	//name of product
+	private double price; 			//price of product
+	private int quantity; 			//quantity available of product
+	private String dispenseLocation; 	// Location in the dispenser
+	private int productId; 			//unique ID for product (used for tracking)
 	
 	//no-arg constructor
 	public Product(){
@@ -31,10 +32,11 @@ public abstract class Product {
 	}
 	
 	//constructor, requires name and ID (default to $0.00 price and 1 quantity?)
-	public Product(String productName, double price, int quantity, int productId){
+	public Product(String productName, double price, int quantity, String dispenseLocation, int productId){
 		this.productName = productName;
 		this.price = price;
 		this.quantity = quantity;
+		this.dispenseLocation = dispenseLocation;
 		this.productId = productId;
 	}
 	
@@ -44,15 +46,19 @@ public abstract class Product {
 	}
 	
 	public void setProductId(int productId){
-		
+		this.productId = productId;
 	}
 	
 	public void setPrice(double price){
-		
+		this.price = price;
 	}
 	
 	public void setQuantity(int quantity){
-		
+		this.quantity = quantity;
+	}
+	
+	public void setDispenseLocation(String location){
+		this.dispenseLocation = location;
 	}
 	
 	//getter methods
@@ -72,9 +78,14 @@ public abstract class Product {
 		return quantity;
 	}
 	
+	public String getDispenseLocation(){
+		return dispenseLocation;
+	}
+	
 	@Override
 	public String toString(){
-		return "Product Name: " + productName + ", Price: " + price + ", Quantity: " + quantity + ", Product ID: " + productId;
+		return "Product Name: " + productName + ", Price: " + price + ", Quantity: " + quantity + 
+				", Dispenser Location: " + dispenseLocation + ", Product ID: " + productId;
 	}
 
 }

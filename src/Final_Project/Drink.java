@@ -9,14 +9,14 @@ public class Drink extends Product {
 		
 	}
 	
-	public Drink(String productName, double price, int quantity, int productId, int ounces) {
-		super(productName, price, quantity, productId);
+	public Drink(String productName, double price, int quantity, String dispenseLocation, int productId, int ounces) {
+		super(productName, price, quantity, dispenseLocation, productId);
 		this.ounces = ounces;
 	}
 	
 	//replicate an existing Drink object
 	public Drink(Drink drink){
-		super(drink.getName(), drink.getPrice(), drink.getQuantity(), drink.getProductId());
+		super(drink.getName(), drink.getPrice(), drink.getQuantity(), drink.getDispenseLocation(), drink.getProductId());
 		this.ounces = drink.getOunces();
 	}
 	
