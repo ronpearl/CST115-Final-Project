@@ -71,7 +71,7 @@ public abstract class Product {
 	
 	@Override
 	public String toString(){
-		return "";
+		return "Product Name: " + productName + ", Price: " + price + ", Quantity: " + quantity + ", Product ID: " + productId;
 	}
 
 }

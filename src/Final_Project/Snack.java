@@ -14,8 +14,10 @@ public abstract class Snack extends Product {
 		this.calories = calories;
 	}
 	
+	//replicate an existing Snack object
 	public Snack(Snack snack) {
-		
+		super(snack.getName(), snack.getPrice(), snack.getQuantity(), snack.getProductId());
+		this.calories = snack.getCalories();
 	}
 	
 	// Setters
@@ -30,7 +32,7 @@ public abstract class Snack extends Product {
 	
 	@Override
 	public String toString() {
-		return "";
+		return super.toString() + ", Calroies: " + calories;
 	}
 
 }

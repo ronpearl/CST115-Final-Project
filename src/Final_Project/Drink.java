@@ -2,24 +2,37 @@ package Final_Project;
 
 public class Drink extends Product {
 
-	private 
+	private int ounces;
 	
 	//no-arg constructor
 	public Drink(){
 		
 	}
 	
-	public Drink(){
-		
+	public Drink(String productName, double price, int quantity, int productId, int ounces) {
+		super(productName, price, quantity, productId);
+		this.ounces = ounces;
 	}
 	
+	//replicate an existing Drink object
 	public Drink(Drink drink){
-		
+		super(drink.getName(), drink.getPrice(), drink.getQuantity(), drink.getProductId());
+		this.ounces = drink.getOunces();
+	}
+	
+	//setters
+	public void setOunces(int ounces){
+		this.ounces = ounces;
+	}
+	
+	//getters
+	public int getOunces(){
+		return ounces;
 	}
 	
 	@Override
 	public String toString(){
-		
+		return super.toString() + ", Ounces: " + ounces;
 	}
 	
 }
