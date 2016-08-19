@@ -24,8 +24,8 @@ import java.util.ArrayList;
 public class Dispenser {
 
 		private ArrayList<Product> products = new ArrayList();
-		private int maxProducts = 40;
-		private int maxProductsPerRow = 10;
+		private int maxProducts = 80;
+		private int maxProductsPerRow = 5;
 		
 		private String[] objType = new String[20]; // Type of product in vending machine
 		private float balance; // Amount of money for transaction
@@ -56,7 +56,7 @@ public class Dispenser {
 				System.out.println("Dispenser is full. Maximum number of products is " + maxProducts);
 			} else {
 				// Check that the row isn't full
-				if (product.getQuantity() > 10) {
+				if (product.getQuantity() > maxProductsPerRow) {
 					System.out.println("Cannot have more than " + maxProductsPerRow + " items in each row");
 				} else {
 					// Add it to the ArrayList
