@@ -1,3 +1,17 @@
+/*******************************************************
+*                      Drink	                       *
+*------------------------------------------------------*
+* -ounces: int                                         *
+*------------------------------------------------------*   
+* +toString(): toString 							   *
+* +Drink()						                       *
+* +Drink(productName: String, price:double,            *
+* quantity:int, dispenseLocation: String,              *
+* productId: int, ounces: int)						   *
+* +setOunces(ounces: int): void 			     	   *
+* +getOunces(): int             			     	   *
+********************************************************/
+
 package Final_Project;
 
 public class Drink extends Product {

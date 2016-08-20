@@ -4,15 +4,24 @@
 * -productName: String                                 *
 * -price: double                                       *
 * -quantity: int                                       *
+* -dispenseLocation: String                            *
 * -productId: int                                      *
-*------------------------------------------------------*        
-* +Product(productName: String, productId: int)        *
+*------------------------------------------------------*   
+* +Product()								           *     
+* +Product(productName: String, price:double,          *
+* quantity:int, dispenseLocation: String,              *
+* productId: int)                                      *
+* +setProductName(name: String):void                   *
 * +setProductId(productId: int): void                  *
-* +getProductId(): int                                 *
 * +setPrice(price: double): void                       *
-* +getPrice(): int                                     *
 * +setQuantity(quantity: int): void                    *
+* +setDispenseLocation(location: String): void         *
+* +getProductName(): String                            *
+* +getProductId(): int                                 *
+* +getPrice(): int                                     *
 * +getQuantity(): int                                  *
+* +getDispenseLocation(): String                       *
+* +toString(): toString 							   *
 ********************************************************/
 
 

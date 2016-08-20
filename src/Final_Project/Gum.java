@@ -1,3 +1,22 @@
+/*******************************************************
+*                      GUM   	                       *
+*------------------------------------------------------*
+* -packSize: String                                    *
+* -sugarFree: boolean                                  *
+*------------------------------------------------------*   
+* +Gum()								               *     
+* +Gum(productName: String, price:double,              *
+* quantity:int, dispenseLocation: String,              *
+* productId: int, calories: int, packSize: String,     * 
+* sugarFree: boolean)                                  *
+* +Gum(Gum: gum)                                       *
+* +setPackSize(packSize: String): void                 *
+* +setSugarFree(sugarFree: boolean): void              *
+* +getPackSize(): String   				               *
+* +getSugarFree(): boolean       				       *
+* +toString(): toString 							   *
+********************************************************/
+
 package Final_Project;
 
 public class Gum extends Snack {

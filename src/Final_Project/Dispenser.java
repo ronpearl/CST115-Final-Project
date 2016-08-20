@@ -10,9 +10,20 @@
 * -status: String                                      *
 * -transaction: String[]							   *
 * -transactions:ArrayList<transaction>                 *
-*------------------------------------------------------*        
-* +addProduct()                                        *
+*------------------------------------------------------*    
+* +Dispenser()    									   *
+* +Dispenser(products: ArrayList<Product>)    		   *
+* +addProduct(product: Product): void                  *
+* +removeProduct(id: int): void                        *
+* +dispenserFull():boolean        					   *
+* +setMaxProducts(max: int): void 					   *
+* +setMaxProductsPerRow(max: int): void 	      	   *
 * +setProduct()                                        *
+* +getProducts(): ArrayList 						   *
+* +getMaxProducts(): int 							   *
+* +getMaxProductsPerRow(): int 						   *
+* +getTotalProductCount(): int 						   *
+* +getProductsToString(): String 					   *
 * +removeProduct()                                     *
 * +dispenseProduct()                                   *
 ********************************************************/

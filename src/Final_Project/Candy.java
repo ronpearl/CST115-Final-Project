@@ -1,3 +1,18 @@
+/*******************************************************
+*                      Candy	                       *
+*------------------------------------------------------*
+* -servingSize: double                                 *
+*------------------------------------------------------*   
+* +Candy()								               *     
+* +Candy(productName: String, price:double,            *
+* quantity:int, dispenseLocation: String,              *
+* productId: int, calories: int, servingSize: double)  *
+* +Candy(Candy: candy)                                 *
+* +setServingSize(servingSize: double): void           *
+* +getServingSize(): double                            *
+* +toString(): toString 							   *
+********************************************************/
+
 package Final_Project;
 
 public class Candy extends Snack {

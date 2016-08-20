@@ -1,3 +1,18 @@
+/*******************************************************
+*                      Chips	                       *
+*------------------------------------------------------*
+* -baked: boolean                                      *
+*------------------------------------------------------*   
+* +Chips()								               *     
+* +Chips(productName: String, price:double,            *
+* quantity:int, dispenseLocation: String,              *
+* productId: int, calories: int, baked: boolean)       *
+* +Chips(Chips: chips)                                 *
+* +setBaked(baked: boolean): void                      *
+* +getBaked(): boolean                                 *
+* +toString(): toString 							   *
+********************************************************/
+
 package Final_Project;
 
 public class Chips extends Snack {

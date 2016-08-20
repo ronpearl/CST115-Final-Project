@@ -1,3 +1,19 @@
+/*******************************************************
+*                      Snack	                       *
+*------------------------------------------------------*
+* -calories: int                                       *
+*------------------------------------------------------*   
+* +Snack()								               *     
+* +Snack(productName: String, price:double,            *
+* quantity:int, dispenseLocation: String,              *
+* productId: int, calories: int)                       *
+* +Snack(Snack: snack)                                 *
+* +setCalories(calories: int): void                    *
+* +getCalories(): int                                  *
+* +toString(): toString 							   *
+********************************************************/
+
+
 package Final_Project;
 
 public abstract class Snack extends Product {
