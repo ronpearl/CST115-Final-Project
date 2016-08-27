@@ -16,7 +16,7 @@
 
 package Final_Project;
 
-public abstract class Snack extends Product {
+public abstract class Snack extends Product implements Comparable<Snack>{
 	
 	protected int calories;
 	
@@ -44,6 +44,21 @@ public abstract class Snack extends Product {
 	// Getters
 	public int getCalories() {
 		return this.calories;
+	}
+	
+	@Override //Comparable interface
+	public int compareTo(Snack snack){
+		if(this.getName().charAt(0) < snack.getName().charAt(0))
+			return -1;
+		else if(this.getName().charAt(0) > snack.getName().charAt(0))
+			return 1;
+		else
+			if(this.getPrice() < snack.getPrice())
+				return -1;
+			else if(this.getPrice() > snack.getPrice())
+				return -1;
+			else
+				return 0;
 	}
 	
 	@Override

@@ -14,7 +14,7 @@
 
 package Final_Project;
 
-public class Drink extends Product {
+public class Drink extends Product implements Comparable<Drink> {
 
 	private int ounces;
 	
@@ -43,6 +43,22 @@ public class Drink extends Product {
 	public int getOunces(){
 		return ounces;
 	}
+	
+	@Override //Comparable interface
+	public int compareTo(Drink drink){
+		if(this.getName().charAt(0) < drink.getName().charAt(0))
+			return -1;
+		else if(this.getName().charAt(0) > drink.getName().charAt(0))
+			return 1;
+		else
+			if(this.getPrice() < drink.getPrice())
+				return -1;
+			else if(this.getPrice() > drink.getPrice())
+				return -1;
+			else
+				return 0;
+	}
+	
 	
 	@Override
 	public String toString(){
