@@ -25,10 +25,27 @@ public class VendingMachine {
 		testDisp.addProduct(new Candy("Reeses", 2.09, 3, "C1", 2435, 240, 1));
 		testDisp.addProduct(new Gum("Trident", 0.89, 5, "D4", 9999, 5, "Medium", true));
 		testDisp.addProduct(new Drink("Coke", 1.49, 4, "A1", 1111, 12));
+		testDisp.addProduct(new Drink("Tea", 1.25, 3, "A3", 1133, 12));
+	
+		// Create new Drinks to Compare
+		Drink tea = new Drink("Tea", 1.25, 3, "A3", 1133, 12);
+		Drink coke = new Drink("Coke", 1.49, 4, "A1", 1111, 12);
+		coke.compareTo(tea);
 				
-		//display Products in a String
-		System.out.print(testDisp.getProductsToString() + "\n" +
+	    //display Products in a String
+		System.out.println(testDisp.getProductsToString() + "\n" +
 				"Total Product Count: " + testDisp.getTotalProductCount());
 		
+		// Result of Drinks Compare
+		int result = coke.compareTo(tea);
+		if (result < 0){
+			System.out.print("Coke is less than tea");
+		} else if (result == 0){
+			System.out.print("These are the same");
+		}else {
+			System.out.print("Coke is greater than tea");
+		}
+		
 	}
+	
 }

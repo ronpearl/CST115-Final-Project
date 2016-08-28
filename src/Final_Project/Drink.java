@@ -14,7 +14,7 @@
 
 package Final_Project;
 
-public class Drink extends Product implements Comparable<Drink> {
+public class Drink extends Product implements Comparable {
 
 	private int ounces;
 	
@@ -44,7 +44,6 @@ public class Drink extends Product implements Comparable<Drink> {
 		return ounces;
 	}
 	
-	@Override //Comparable interface
 	public int compareTo(Drink drink){
 		if(this.getName().charAt(0) < drink.getName().charAt(0))
 			return -1;
