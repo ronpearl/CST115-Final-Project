@@ -66,6 +66,10 @@ Using your UML, write the code to implement the following classes:
 
 Submit all your files as one project, which includes the main() method and all classes.
 
+## Milestone 3
+
+Update your Snack and Drink classes so that they implement the Comparable interface.  Comparison is based on the name of the item and follows alphabetical ordering rules, ignoring case. In other words, the Drink “Cola” is less than the Drink “Tea”. Items with the same name should be ordered on price in ascending order. If two items have the same name and price, they are considered equal. Write a main method that tests your compareTo() method. Submit your updated class files.
+
 
 ## Files
 
