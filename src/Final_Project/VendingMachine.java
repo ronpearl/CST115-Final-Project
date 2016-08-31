@@ -49,10 +49,7 @@ public class VendingMachine extends Application {
 	public void start(Stage primaryStage) {		
 		// Add initial products to the Dispenser
 		// For identification purposes, Product ID's should have a specific starting number:
-		// 	Candy:	1
-		// 	Chips:	2
-		// 	Drink:	3
-		// 	Gum:	4
+		// 	Candy:	1		Chips:	2		Drink:	3		Gum:	4
 		mainDisp.addProduct(new Chips("Doritos", 1.99, 0, "A2", 2234, "Doritos are wonderful triangle chips", 135, false));
 		mainDisp.addProduct(new Chips("Cheetos", 2.49, 5, "B3", 2155, "Cheetos are cheesy crunch balls", 155, false));
 		mainDisp.addProduct(new Candy("Reeses", 2.09, 3, "C1", 1435, "Chocolate and peanut butter matched together", 240, 1));
