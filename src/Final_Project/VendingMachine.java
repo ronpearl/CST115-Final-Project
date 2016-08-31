@@ -17,10 +17,7 @@ package Final_Project;
 
 import java.io.File;
 import java.util.ArrayList;
-
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos; 
@@ -29,6 +26,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -36,6 +36,11 @@ import javafx.scene.image.ImageView;
 public class VendingMachine extends Application {
 	GridPane mainCategoryPane = new GridPane();
 	Dispenser mainDisp = new Dispenser();
+	String borderedItems = "-fx-border-color: gray;\n"
+            + "-fx-border-insets: 5;\n"
+            + "-fx-border-width: 1;\n"
+            + "-fx-border-style: solid;\n";
+	Font fontBold = Font.font("Sans-Serif",FontWeight.BOLD, FontPosture.REGULAR, 16);
 	
 	@Override
 	public void start(Stage primaryStage) {		
@@ -45,12 +50,12 @@ public class VendingMachine extends Application {
 		// 	Chips:	2
 		// 	Drink:	3
 		// 	Gum:	4
-		mainDisp.addProduct(new Chips("Doritos", 1.99, 1, "A2", 2234, "Description", 135, false));
-		mainDisp.addProduct(new Chips("Cheetos", 2.49, 5, "B3", 2155, "Description", 155, false));
-		mainDisp.addProduct(new Candy("Reeses", 2.09, 3, "C1", 1435, "Description", 240, 1));
-		mainDisp.addProduct(new Gum("Trident", 0.89, 5, "D4", 4999, "Description", 5, "Medium", true));
-		mainDisp.addProduct(new Drink("Coke", 1.49, 4, "A1", 3111, "Description", 12));
-		mainDisp.addProduct(new Drink("Tea", 1.25, 3, "A3", 3133, "Description", 12));
+		mainDisp.addProduct(new Chips("Doritos", 1.99, 1, "A2", 2234, "Doritos are wonderful triangle chips", 135, false));
+		mainDisp.addProduct(new Chips("Cheetos", 2.49, 5, "B3", 2155, "Cheetos are cheesy crunch balls", 155, false));
+		mainDisp.addProduct(new Candy("Reeses", 2.09, 3, "C1", 1435, "Chocolate and peanut butter matched together", 240, 1));
+		mainDisp.addProduct(new Gum("Trident", 0.89, 5, "D4", 4999, "Classic trident gum", 5, "Medium", true));
+		mainDisp.addProduct(new Drink("Coke", 1.49, 4, "A1", 3111, "Coca-Cola, the drink of champions", 12));
+		mainDisp.addProduct(new Drink("Tea", 1.25, 3, "A3", 3133, "Tea that will let you sip your way to happiness", 12));
 		
 		// Create GridPane
 		createCategoryPane();
@@ -175,7 +180,11 @@ public class VendingMachine extends Application {
 	}
 	
 	
-	
+	/**
+	 * buildCategoryItems()
+	 * 
+	 * @param prodsInThisCat
+	 */
 	public void buildCategoryItems(ArrayList prodsInThisCat) {
 		mainCategoryPane.setAlignment(Pos.CENTER);
 		mainCategoryPane.setPadding(new Insets(10, 10, 10, 10));
@@ -186,8 +195,9 @@ public class VendingMachine extends Application {
 		backBtn.setOnAction(value ->  {
 			createCategoryPane();
 		});
-		
-		mainCategoryPane.add(backBtn, 0, 1);
+				
+		// Calculate where the back button should be placed based upon number of rows required
+		mainCategoryPane.add(backBtn, 0, (int) ( Math.ceil( (prodsInThisCat.size() / 2) + 1) ), 2, 1);
 		mainCategoryPane.setHalignment(backBtn, HPos.CENTER);
 		
 		// Setup rows and columns to define the layout
@@ -207,7 +217,9 @@ public class VendingMachine extends Application {
 	}
 	
 	
-
+	/**
+	 * buildCategoryItems()
+	 */
 	class buildCategoryItems extends GridPane {
 		buildCategoryItems(Product prod) {
 			// Setup internal GridPane
@@ -221,16 +233,29 @@ public class VendingMachine extends Application {
 			getChildren().add(pane2);
 			
 			// Create parts
-			pane2.add(new Label(prod.getName()), 0, 0);
+			Label name = new Label(prod.getName());
+			Label price = new Label(String.valueOf(prod.getPrice()));
+			Label desc = new Label(prod.getDescription());
+			Button buyBtn = new Button("Buy");
+			buyBtn.setOnAction(value ->  {
+				// Purchase the item
+				// Currently we are just going to display an alert with the items details
+				
+			});
 			
+			// Enable wrapping of label for description
+			desc.setWrapText( true );
 			
+			// Add items to the pane
+			pane2.add(name, 0, 0);
+			pane2.add(price, 1, 0);
+			pane2.add(desc, 0, 1, 2, 1);
+			pane2.add(buyBtn, 0, 2, 2, 1);
 			
-//			Image catImage = new Image(new File("images/" + catName.toLowerCase() + ".jpg").toURI().toString());
-//			
-//			// Add items to the pane
-//			pane2.add(new ImageView(catImage), 0, 0);
-//			pane2.add(catButton, 0, 1);
-//			pane2.setHalignment(catButton, HPos.CENTER);
+			pane2.setHalignment(price, HPos.RIGHT);
+			pane2.setHalignment(buyBtn, HPos.CENTER);
+			name.setFont(fontBold);
+			pane2.setStyle(borderedItems);
 		}
 	}
 	
