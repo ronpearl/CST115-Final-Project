@@ -29,14 +29,14 @@ public class Gum extends Snack {
 		
 	}
 	
-	public Gum(String productName, double price, int quantity, String dispenseLocation, int productId, int calories, String packSize, boolean sugarFree){
-		super(productName, price, quantity, dispenseLocation, productId, calories);
+	public Gum(String productName, double price, int quantity, String dispenseLocation, int productId, String prodDescription, int calories, String packSize, boolean sugarFree){
+		super(productName, price, quantity, dispenseLocation, productId, prodDescription, calories);
 		this.packSize = packSize;
 		this.sugarFree = sugarFree;
 	}
 	
 	public Gum(Gum gum){
-		super(gum.getName(), gum.getPrice(), gum.getQuantity(), gum.getDispenseLocation(), gum.getProductId(), gum.getCalories());
+		super(gum.getName(), gum.getPrice(), gum.getQuantity(), gum.getDispenseLocation(), gum.getProductId(), gum.getDescription(), gum.getCalories());
 		this.packSize = gum.getPackSize();
 		this.sugarFree = gum.getSugarFree();
 	}

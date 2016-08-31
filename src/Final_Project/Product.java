@@ -29,11 +29,12 @@ package Final_Project;
 
 public abstract class Product {
 	
-	private String productName; 	//name of product
-	private double price; 			//price of product
-	private int quantity; 			//quantity available of product
+	private String productName; 		// name of product
+	private double price; 				// price of product
+	private int quantity; 				// quantity available of product
+	private String prodDescription;		// Product description
 	private String dispenseLocation; 	// Location in the dispenser
-	private int productId; 			//unique ID for product (used for tracking)
+	private int productId; 				// unique ID for product (used for tracking)
 	
 	//no-arg constructor
 	public Product(){
@@ -41,10 +42,11 @@ public abstract class Product {
 	}
 	
 	//constructor, requires name and ID (default to $0.00 price and 1 quantity?)
-	public Product(String productName, double price, int quantity, String dispenseLocation, int productId){
+	public Product(String productName, double price, int quantity, String dispenseLocation, int productId, String prodDescription){
 		this.productName = productName;
 		this.price = price;
 		this.quantity = quantity;
+		this.prodDescription = prodDescription;
 		this.dispenseLocation = dispenseLocation;
 		this.productId = productId;
 	}
@@ -56,6 +58,10 @@ public abstract class Product {
 	
 	public void setProductId(int productId){
 		this.productId = productId;
+	}
+	
+	public void setProductDescription(String desc) {
+		this.prodDescription = desc;
 	}
 	
 	public void setPrice(double price){
@@ -77,6 +83,10 @@ public abstract class Product {
 	
 	public int getProductId(){
 		return productId;
+	}
+	
+	public String getDescription() {
+		return prodDescription;
 	}
 	
 	public double getPrice(){

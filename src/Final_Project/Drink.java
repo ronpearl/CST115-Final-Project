@@ -23,14 +23,14 @@ public class Drink extends Product implements Comparable {
 		
 	}
 	
-	public Drink(String productName, double price, int quantity, String dispenseLocation, int productId, int ounces) {
-		super(productName, price, quantity, dispenseLocation, productId);
+	public Drink(String productName, double price, int quantity, String dispenseLocation, int productId, String prodDescription, int ounces) {
+		super(productName, price, quantity, dispenseLocation, productId, prodDescription);
 		this.ounces = ounces;
 	}
 	
 	//replicate an existing Drink object
 	public Drink(Drink drink){
-		super(drink.getName(), drink.getPrice(), drink.getQuantity(), drink.getDispenseLocation(), drink.getProductId());
+		super(drink.getName(), drink.getPrice(), drink.getQuantity(), drink.getDispenseLocation(), drink.getProductId(), drink.getDescription());
 		this.ounces = drink.getOunces();
 	}
 	

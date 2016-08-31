@@ -45,12 +45,12 @@ public class VendingMachine extends Application {
 		// 	Chips:	2
 		// 	Drink:	3
 		// 	Gum:	4
-		mainDisp.addProduct(new Chips("Doritos", 1.99, 1, "A2", 2234, 135, false));
-		mainDisp.addProduct(new Chips("Cheetos", 2.49, 5, "B3", 2155, 155, false));
-		mainDisp.addProduct(new Candy("Reeses", 2.09, 3, "C1", 1435, 240, 1));
-		mainDisp.addProduct(new Gum("Trident", 0.89, 5, "D4", 4999, 5, "Medium", true));
-		mainDisp.addProduct(new Drink("Coke", 1.49, 4, "A1", 3111, 12));
-		mainDisp.addProduct(new Drink("Tea", 1.25, 3, "A3", 3133, 12));
+		mainDisp.addProduct(new Chips("Doritos", 1.99, 1, "A2", 2234, "Description", 135, false));
+		mainDisp.addProduct(new Chips("Cheetos", 2.49, 5, "B3", 2155, "Description", 155, false));
+		mainDisp.addProduct(new Candy("Reeses", 2.09, 3, "C1", 1435, "Description", 240, 1));
+		mainDisp.addProduct(new Gum("Trident", 0.89, 5, "D4", 4999, "Description", 5, "Medium", true));
+		mainDisp.addProduct(new Drink("Coke", 1.49, 4, "A1", 3111, "Description", 12));
+		mainDisp.addProduct(new Drink("Tea", 1.25, 3, "A3", 3133, "Description", 12));
 		
 		// Create GridPane
 		createCategoryPane();
