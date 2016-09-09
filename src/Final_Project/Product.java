@@ -27,7 +27,7 @@
 
 package Final_Project;
 
-public abstract class Product {
+public abstract class Product extends ErrorManagement {
 	
 	private String productName; 		// name of product
 	private double price; 				// price of product
