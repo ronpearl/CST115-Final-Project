@@ -20,14 +20,18 @@ import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos; 
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -36,8 +40,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class VendingMachine extends Application {
+	BorderPane overallMainPane = new BorderPane();
 	GridPane mainCategoryPane = new GridPane();
+	GridPane basketPane = new GridPane();
+	ListView<String> basketList = new ListView<>();
+	Label basketPrice = new Label("Total:");
 	Dispenser mainDisp = new Dispenser();
+	InventoryManagement invMngmnt = new InventoryManagement();
 	String borderedItems = "-fx-border-color: gray;\n"
             + "-fx-border-insets: 5;\n"
             + "-fx-border-width: 1;\n"
@@ -46,11 +55,25 @@ public class VendingMachine extends Application {
 	ArrayList<Product> productsInSelectedCategory = new ArrayList();
 	
 	@Override
-	public void start(Stage primaryStage) {		
+	public void start(Stage primaryStage) {
+		// Create left side component
+		VBox leftSide = new VBox(15);
+		leftSide.setPadding(new Insets(15,15,15,15));
+		leftSide.setPrefWidth(500);
+		leftSide.setPrefHeight(600);
+		leftSide.setStyle("-fx-background-color: #dddddd");
+		
+		// Create right side component
+		VBox rightSide = new VBox(15);
+		rightSide.setPadding(new Insets(15,15,15,15));
+		rightSide.setPrefWidth(260);
+		rightSide.setPrefHeight(600);
+		
+		
 		// Add initial products to the Dispenser
 		// For identification purposes, Product ID's should have a specific starting number:
 		// 	Candy:	1		Chips:	2		Drink:	3		Gum:	4
-		mainDisp.addProduct(new Chips("Doritos", 1.99, 0, "A2", 2234, "Doritos are wonderful triangle chips", 135, false));
+		mainDisp.addProduct(new Chips("Doritos", 1.99, 1, "A2", 2234, "Doritos are wonderful triangle chips", 135, false));
 		mainDisp.addProduct(new Chips("Cheetos", 2.49, 5, "B3", 2155, "Cheetos are cheesy crunch balls", 155, false));
 		mainDisp.addProduct(new Candy("Reeses", 2.09, 3, "C1", 1435, "Chocolate and peanut butter matched together", 240, 1));
 		mainDisp.addProduct(new Gum("Trident", 0.89, 5, "D4", 4999, "Classic trident gum", 5, "Medium", true));
@@ -60,9 +83,15 @@ public class VendingMachine extends Application {
 		// Create GridPane
 		createCategoryPane();
 		
+		// setup main pane components
+		overallMainPane.setLeft(leftSide);
+		overallMainPane.setRight(rightSide);
+		leftSide.getChildren().add(mainCategoryPane);
+		rightSide.getChildren().add(new BuildBasket());
+		
 		// Create a scene and place it in the stage
-		Scene scene = new Scene(mainCategoryPane);
-		primaryStage.setTitle("Grid Pane Example"); // Set the stage title
+		Scene scene = new Scene(overallMainPane);
+		primaryStage.setTitle("Vending Machine"); // Set the stage title
 		primaryStage.setScene(scene); // Place the scene in the stage
 		primaryStage.show(); // Display the stage
 	}
@@ -97,6 +126,8 @@ public class VendingMachine extends Application {
 				row++;
 			}
 		}
+		
+//		doBuildBasket();
 	}
 	
 	/**
@@ -211,7 +242,7 @@ public class VendingMachine extends Application {
 		int col = 0;
 		
 		for (int i = 0; i < productsInSelectedCategory.size(); i++) {
-			mainCategoryPane.add(new buildCategoryItems((Product) productsInSelectedCategory.get(i)), col, row);
+			mainCategoryPane.add(new buildEachCategoryItem((Product) productsInSelectedCategory.get(i)), col, row);
 			
 			col++;
 			
@@ -226,8 +257,8 @@ public class VendingMachine extends Application {
 	/**
 	 * buildCategoryItems()
 	 */
-	class buildCategoryItems extends GridPane {
-		buildCategoryItems(Product prod) {
+	class buildEachCategoryItem extends GridPane {
+		buildEachCategoryItem(Product prod) {
 			// Setup internal GridPane
 			GridPane pane2 = new GridPane();
 			pane2.setAlignment(Pos.CENTER);
@@ -242,36 +273,22 @@ public class VendingMachine extends Application {
 			Label name = new Label(prod.getName());
 			Label price = new Label(String.valueOf(prod.getPrice()));
 			Label desc = new Label(prod.getDescription());
-			Label qty = new Label("Qty Available: " + String.valueOf(prod.getQuantity()));
-			Button buyBtn = new Button("Buy");
+			Label qty = new Label("Qty Available: " + String.valueOf(prod.getTemporaryQuantity()));
+			Button addToBasketBtn = new Button("Add To Basket");
 			
-			buyBtn.setOnAction(value ->  {
-				// Purchase the item
-				// Currently we are just going to display an alert with the items details
+			addToBasketBtn.setOnAction(value ->  {
+				// Attempt to add to the basket
+				boolean basketAdd = invMngmnt.addToBasket(prod, 1);
 				
-				// Check qty available first
-				if (prod.getQuantity() <= 0) {
-					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Item Unavailable");
-					alert.setHeaderText("Item Unavailable");
-				    alert.setContentText("Sorry, there are no " + prod.getName() + " items left. Please try another item.");
-				    alert.showAndWait();
-				} else {
-					// Update qty of current product
-					prod.setQuantity(prod.getQuantity() - 1);
+				basketPrice.setText("Total: $" + invMngmnt.getBasketTotal());
+				
+				if (basketAdd) {
+					// Update Basket
+					basketList.setItems( invMngmnt.getBasketObsList() );
 					
-					// Show purchase alert
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Purchase Details");
-					alert.setHeaderText("Here are the details of your vending purchase");
-				    alert.setContentText("Item Purchased: \t" + prod.getName() +
-				    		"\nPrice: \t\t" + prod.getPrice());
-				    alert.showAndWait();
-				    
 				    // Re-do category items panel
 				    buildCategoryItems();
-				}
-				
+				}				
 			});
 			
 			// Enable wrapping of label for description
@@ -282,12 +299,61 @@ public class VendingMachine extends Application {
 			pane2.add(price, 1, 0);
 			pane2.add(desc, 0, 1, 2, 1);
 			pane2.add(qty, 0, 2, 2, 1);
-			pane2.add(buyBtn, 0, 3, 2, 1);
+			pane2.add(addToBasketBtn, 0, 3, 2, 1);
 			
 			pane2.setHalignment(price, HPos.RIGHT);
-			pane2.setHalignment(buyBtn, HPos.CENTER);
+			pane2.setHalignment(addToBasketBtn, HPos.CENTER);
 			name.setFont(fontBold);
 			pane2.setStyle(borderedItems);
+		}
+	}
+	
+	
+	class BuildBasket extends GridPane {
+		BuildBasket() {
+			// Setup internal GridPane
+			basketPane.setPadding(new Insets(10, 10, 10, 10));
+			basketPane.setHgap(8);
+			basketPane.setVgap(8);
+			
+			// Add to parent GridPane
+			getChildren().add(basketPane);
+			
+			// Create parts
+			Label basketTitle = new Label("Basket");
+			Button removeItemBtn = new Button("Remove");		
+			removeItemBtn.setOnAction(value ->  {
+				// Make sure selection was made
+				if (basketList.getSelectionModel().getSelectedIndex() == -1) {
+					// Do nothing
+				} else {
+					String[] itemSelectedArray = basketList.getSelectionModel().getSelectedItem().split(" - ");
+					int itemIndex = basketList.getSelectionModel().getSelectedIndex();
+					
+					// Remove from the basket
+					invMngmnt.removeFromBasket(mainDisp, Integer.parseInt(itemSelectedArray[1]), itemIndex);
+					
+					basketPrice.setText("Total: $" + invMngmnt.getBasketTotal());
+					
+					// Update Basket
+					basketList.setItems( invMngmnt.getBasketObsList() );
+					
+				    // Re-do category items panel
+				    buildCategoryItems();
+				}
+			});
+			
+			// Create the ListView for the basket
+			basketList.setOrientation(Orientation.VERTICAL);
+			basketList.setPrefSize(220, 380);
+
+			// Add items to the pane
+			basketPane.add(basketTitle, 0, 0);
+			basketPane.add(basketList, 0, 1);
+			basketPane.add(basketPrice, 0, 2);
+			basketPane.add(removeItemBtn, 0, 3);
+			basketPane.setHalignment(basketTitle, HPos.CENTER);
+			basketPane.setHalignment(removeItemBtn, HPos.CENTER);
 		}
 	}
 	

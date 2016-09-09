@@ -32,6 +32,7 @@ public abstract class Product extends ErrorManagement {
 	private String productName; 		// name of product
 	private double price; 				// price of product
 	private int quantity; 				// quantity available of product
+	private int temporaryQuantity; 		// quantity available of product during transaction
 	private String prodDescription;		// Product description
 	private String dispenseLocation; 	// Location in the dispenser
 	private int productId; 				// unique ID for product (used for tracking)
@@ -46,6 +47,7 @@ public abstract class Product extends ErrorManagement {
 		this.productName = productName;
 		this.price = price;
 		this.quantity = quantity;
+		this.temporaryQuantity = quantity;
 		this.prodDescription = prodDescription;
 		this.dispenseLocation = dispenseLocation;
 		this.productId = productId;
@@ -70,6 +72,13 @@ public abstract class Product extends ErrorManagement {
 	
 	public void setQuantity(int quantity){
 		this.quantity = quantity;
+		
+		// Also reset temporary quantity
+		this.temporaryQuantity = quantity;
+	}
+	
+	public void setTemporaryQuantity(int tempQuantity){
+		this.temporaryQuantity = tempQuantity;
 	}
 	
 	public void setDispenseLocation(String location){
@@ -95,6 +104,10 @@ public abstract class Product extends ErrorManagement {
 	
 	public int getQuantity(){
 		return quantity;
+	}
+	
+	public int getTemporaryQuantity(){
+		return temporaryQuantity;
 	}
 	
 	public String getDispenseLocation(){
