@@ -48,6 +48,15 @@ public class InventoryManagement extends Product {
 	}
 	
 	
+	/**
+	 * removeFromBasket()
+	 * 
+	 * Performs tasks of removing items from the users basket
+	 * 
+	 * @param mainDisp
+	 * @param prodId
+	 * @param itemInList
+	 */
 	public void removeFromBasket(Dispenser mainDisp, int prodId, int itemInList) {
 		// Remove from Observable List
 		basketObservableList.remove(itemInList);
@@ -73,6 +82,13 @@ public class InventoryManagement extends Product {
 	}
 	
 	
+	/**
+	 * getBasketTotal()
+	 * 
+	 * Returns Double value to show the total price of all items in basket
+	 * 
+	 * @return
+	 */
 	public double getBasketTotal() {
 		double tempTotal = 0.00;
 		
@@ -86,6 +102,11 @@ public class InventoryManagement extends Product {
 	}
 	
 	
+	/**
+	 * updateBasketObsList()
+	 * 
+	 * Updates the Observable list of items in the basket
+	 */
 	private void updateBasketObsList() {		
 		String[] tempListItems = new String[basketListItems.size()];
 		
