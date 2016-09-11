@@ -2,9 +2,21 @@ package Final_Project;
 
 import java.util.ArrayList;
 
+import javafx.animation.PathTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.VLineTo;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class InventoryManagement extends Product {
 	
@@ -42,6 +54,76 @@ public class InventoryManagement extends Product {
 			// Add to the basket
 			basketListItems.add( prod.getName() + " - " + prod.getProductId() + " - $" + prod.getPrice() );
 			updateBasketObsList();
+			
+			// Create animation for adding the item to the basket
+			Stage stage = new Stage();
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("Add to Basket");
+			stage.setResizable(false);
+			
+			Group root = new Group();
+			
+			// Get image for basket
+			ImageView basket = new ImageView(new Image("http://simpleicon.com/wp-content/uploads/basket.png"));
+			basket.relocate(10, 300);
+			basket.setFitHeight(90);
+			basket.setFitWidth(100);
+			
+			// Create image for product
+			ImageView prodImage = new ImageView();
+			
+			// Set image size and url based of prod.getname()
+	        switch (prod.getName()) {
+	            case "Doritos": prodImage = new ImageView(new Image("http://www.fritolay.com/images/default-source/blue-bag-image/doritos-nacho-cheese.png"));
+					          	prodImage.setFitHeight(80);
+					        	prodImage.setFitWidth(60);
+					        	break;
+	            case "Cheetos": prodImage = new ImageView(new Image("http://www.scoopnheap.com/wp-content/uploads/2013/02/Cheetos.png"));
+					          	prodImage.setFitHeight(80);
+					        	prodImage.setFitWidth(60);
+					        	break;
+	            case "Reeses":  prodImage = new ImageView(new Image("https://upload.wikimedia.org/wikipedia/en/9/97/Reese's-PB-Cups-Wrapper-Small.png"));
+					            prodImage.setRotate(90);
+					          	prodImage.setFitHeight(40);
+					        	prodImage.setFitWidth(80);
+					        	break;
+	            case "Trident": prodImage = new ImageView(new Image("http://badwordslab.com/wp-content/uploads/2014/08/Trident-460x295.png"));
+					            prodImage.setFitHeight(40);
+					        	prodImage.setFitWidth(80);
+					        	break;
+	            case "Coke":  prodImage = new ImageView(new Image("http://www.coca-colaproductfacts.com/content/dam/productfacts/us/productDetails/ProductImages/Coke_20oz.png"));
+					          prodImage.setFitHeight(90);
+					          prodImage.setFitWidth(40);
+					          break;
+	            case "Tea":  prodImage = new ImageView(new Image("https://s-media-cache-ak0.pinimg.com/236x/76/55/d9/7655d918c9d08c66beecc8e47146da2a.jpg"));
+				             prodImage.setFitHeight(90);
+					         prodImage.setFitWidth(40);
+					         break;
+	        }
+		    
+            prodImage.relocate(0, 0);
+			root.getChildren().addAll(prodImage, basket);
+			
+			// Set animation path
+			Path path = new Path();
+			path.getElements().addAll(new MoveTo(60, 50), new VLineTo(340));
+			path.setFill(null);
+			path.setStroke(Color.TRANSPARENT);
+			path.setStrokeWidth(2);
+			root.getChildren().add(path);
+			
+			// Set and show new scene
+			Scene scene = new Scene(root, 100, 400);
+			stage.setScene(scene);
+			stage.show();
+			
+			//Animate product going into basket
+			PathTransition pt = new PathTransition(Duration.millis(1000), path, prodImage);
+            pt.play();
+			pt.setAutoReverse(false);
+			pt.play();
+			
+			/////
 			
 			return true;
 		}
