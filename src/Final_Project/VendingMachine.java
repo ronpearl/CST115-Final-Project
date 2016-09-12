@@ -126,7 +126,7 @@ public class VendingMachine extends Application {
 		
 		Button boss = new Button("BOSS BUTTON");
 		boss.setOnAction(value -> {
-			viewBossInterface();
+			buildBossInterface();
 		});
 		mainCategoryPane.add(boss, 0, 3);
 	}
@@ -358,50 +358,77 @@ public class VendingMachine extends Application {
 		}
 	}
 	
-	public void viewBossInterface() {
+	public void buildBossInterface() {
+		// Clear the grid
 		mainCategoryPane.getChildren().clear();
 		
-		mainCategoryPane.getChildren().add(new buildBossItems());
+		mainCategoryPane.setAlignment(Pos.CENTER);
+		mainCategoryPane.setPadding(new Insets(10, 10, 10, 10));
+		mainCategoryPane.setHgap(8);
+		mainCategoryPane.setVgap(8);
 		
+		Button backBtn = new Button("Back To Categories");		
+		backBtn.setOnAction(value ->  {
+			createCategoryPane();
+		});
+				
+		// Calculate where the back button should be placed based upon number of rows required
+		mainCategoryPane.add(backBtn, 0, (int) ( Math.ceil( (mainDisp.getProducts().size() / 2) + 1) ), 2, 1);
+		mainCategoryPane.setHalignment(backBtn, HPos.CENTER);
+		
+		// Setup rows and columns to define the layout
+		int row = 0;
+		int col = 0;
+		
+		for (int i = 0; i < mainDisp.getProducts().size(); i++) {
+			mainCategoryPane.add(new buildBossItem((Product) mainDisp.getProducts().get(i)), col, row);
+			
+			col++;
+			
+			if (col == 2) {	// Maximum columns will be 2. Once this is met, reset column and increment to next row
+				col = 0;
+				row++;
+			}
+		}
 	}
 	
-	class buildBossItems extends GridPane {
-		buildBossItems() {
+	
+	/**
+	 * buildBossItem()
+	 */
+	class buildBossItem extends GridPane {
+		buildBossItem(Product prod) {
 			// Setup internal GridPane
 			GridPane pane2 = new GridPane();
 			pane2.setAlignment(Pos.CENTER);
 			pane2.setPadding(new Insets(10, 10, 10, 10));
 			pane2.setHgap(8);
 			pane2.setVgap(8);
-
-			ArrayList<Product> allProds = mainDisp.getProducts();
 			
 			// Add to parent GridPane
 			getChildren().add(pane2);
 			
 			// Create parts
-			for(int i = 0; i < allProds.size(); i++){
-				Label name = new Label(allProds.get(i).getName());
-				Label price = new Label(String.valueOf(allProds.get(i).getPrice()));
-				Label desc = new Label(allProds.get(i).getDescription());
-				Label qty = new Label("Qty Available: " + String.valueOf(allProds.get(i).getQuantity()));
+			Label name = new Label(prod.getName());
+			Label price = new Label(String.valueOf(prod.getPrice()));
+			Label desc = new Label(prod.getDescription());
+			Label qty = new Label("Qty Available: " + String.valueOf(prod.getTemporaryQuantity()));
 			
-				// Enable wrapping of label for description
-				desc.setWrapText( true );
-				
-				// Add items to the pane
-				pane2.add(name, 0, 0);
-				pane2.add(price, 1, 0);
-				pane2.add(desc, 0, 1, 2, 1);
-				pane2.add(qty, 0, 2, 2, 1);
-				
-				pane2.setHalignment(price, HPos.RIGHT);
-				name.setFont(fontBold);
-				pane2.setStyle(borderedItems);
-			}
+			// Enable wrapping of label for description
+			desc.setWrapText( true );
+			
+			// Add items to the pane
+			pane2.add(name, 0, 0);
+			pane2.add(price, 1, 0);
+			pane2.add(desc, 0, 1, 2, 1);
+			pane2.add(qty, 0, 2, 2, 1);
+
+			
+			pane2.setHalignment(price, HPos.RIGHT);
+			name.setFont(fontBold);
+			pane2.setStyle(borderedItems);
 		}
 	}
-	
 	
 //	public static void main(String[] args) {
 //		Dispenser testDisp = new Dispenser();
