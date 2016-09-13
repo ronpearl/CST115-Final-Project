@@ -17,6 +17,8 @@ package Final_Project;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -26,12 +28,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -413,6 +417,15 @@ public class VendingMachine extends Application {
 			Label price = new Label(String.valueOf(prod.getPrice()));
 			Label desc = new Label(prod.getDescription());
 			Label qty = new Label("Qty Available: " + String.valueOf(prod.getTemporaryQuantity()));
+			TextField textField = new TextField();
+			textField.setMaxHeight(15);
+			textField.setMaxWidth(30);
+			Button updateQuantity = new Button("Update Quantity");
+			
+			updateQuantity.setOnAction(value -> {
+				prod.setQuantity(Integer.parseInt(textField.getText()));
+				buildBossInterface();
+			});
 			
 			// Enable wrapping of label for description
 			desc.setWrapText( true );
@@ -422,13 +435,17 @@ public class VendingMachine extends Application {
 			pane2.add(price, 1, 0);
 			pane2.add(desc, 0, 1, 2, 1);
 			pane2.add(qty, 0, 2, 2, 1);
-
+			pane2.add(textField, 0, 3, 2, 1);
+			pane2.add(updateQuantity, 1, 3, 2, 1);
 			
 			pane2.setHalignment(price, HPos.RIGHT);
 			name.setFont(fontBold);
 			pane2.setStyle(borderedItems);
 		}
 	}
+	
+	
+	
 	
 //	public static void main(String[] args) {
 //		Dispenser testDisp = new Dispenser();
