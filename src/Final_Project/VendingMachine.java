@@ -85,13 +85,6 @@ public class VendingMachine extends Application {
 			e.printStackTrace();
 		}
 		
-//		mainDisp.addProduct(new Chips("Doritos", 1.99, 1, "A2", 2234, "Doritos are wonderful triangle chips", 135, false));
-//		mainDisp.addProduct(new Chips("Cheetos", 2.49, 5, "B3", 2155, "Cheetos are cheesy crunch balls", 155, false));
-//		mainDisp.addProduct(new Candy("Reeses", 2.09, 3, "C1", 1435, "Chocolate and peanut butter matched together", 240, 1));
-//		mainDisp.addProduct(new Gum("Trident", 0.89, 5, "D4", 4999, "Classic trident gum", 5, "Medium", true));
-//		mainDisp.addProduct(new Drink("Coke", 1.49, 4, "A1", 3111, "Coca-Cola, the drink of champions", 12));
-//		mainDisp.addProduct(new Drink("Tea", 1.25, 3, "A3", 3133, "Tea that will let you sip your way to happiness", 12));
-		
 		// Create GridPane
 		createCategoryPane();
 		
