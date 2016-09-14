@@ -146,7 +146,7 @@ public class VendingMachine extends Application {
 			Button submit = new Button("Submit");
 			
 			submit.setOnAction(e -> {
-				if(checkPassword(password.getText()) == true){
+				if( checkPassword(password.getText()) ){
 					buildBossInterface();
 					stage.hide();
 				}else{
@@ -167,12 +167,19 @@ public class VendingMachine extends Application {
 		mainCategoryPane.add(boss, 0, 3);
 	}
 	
+	/**
+	 * checkPassword()
+	 * 
+	 * Checks the BOSS password for validity
+	 * 
+	 * @param string
+	 * @return
+	 */
 	private boolean checkPassword(String string){
-		if(string == "gcu"){
+		if(string.equals("gcu"))
 			return true;
-		}else{
+		else
 			return false;
-		}
 	}
 	
 	/**
