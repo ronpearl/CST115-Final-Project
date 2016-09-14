@@ -17,6 +17,7 @@ package Final_Project;
 
 import java.io.File;
 import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -47,6 +48,8 @@ public class VendingMachine extends Application {
 	Label basketPrice = new Label("Total:");
 	Dispenser mainDisp = new Dispenser();
 	InventoryManagement invMngmnt = new InventoryManagement();
+	Global_InventoryManagement gloabl_invMngmnt = new Global_InventoryManagement();
+
 	String borderedItems = "-fx-border-color: gray;\n"
             + "-fx-border-insets: 5;\n"
             + "-fx-border-width: 1;\n"
@@ -95,6 +98,7 @@ public class VendingMachine extends Application {
 		primaryStage.setScene(scene); // Place the scene in the stage
 		primaryStage.show(); // Display the stage
 	}
+	
 	
 	/**
 	 * createCategoryPane()

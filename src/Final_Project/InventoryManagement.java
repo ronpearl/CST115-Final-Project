@@ -26,7 +26,7 @@ public class InventoryManagement extends Product {
 	InventoryManagement() {
 		
 	}
-	
+		
 	/**
 	 * sellItem()
 	 * 
