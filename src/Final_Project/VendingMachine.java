@@ -17,8 +17,6 @@ package Final_Project;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -31,6 +29,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -130,9 +129,50 @@ public class VendingMachine extends Application {
 		
 		Button boss = new Button("BOSS BUTTON");
 		boss.setOnAction(value -> {
-			buildBossInterface();
+			Stage stage = new Stage();
+			stage.setTitle("Boss Password");
+			stage.setResizable(false);
+			
+			GridPane pane3 = new GridPane();
+			pane3.setAlignment(Pos.CENTER);
+			pane3.setPadding(new Insets(10, 10, 10, 10));
+			pane3.setHgap(8);
+			pane3.setVgap(8);
+			
+			Label enterPword = new Label("Please enter the password:");
+			TextField password = new TextField();
+			password.setMaxHeight(15);
+			password.setMaxWidth(45);
+			Button submit = new Button("Submit");
+			
+			submit.setOnAction(e -> {
+				if(checkPassword(password.getText()) == true){
+					buildBossInterface();
+					stage.hide();
+				}else{
+					System.out.println("Incorrect password, please try again.");
+					System.out.println(password.getText()); //check correct password **TEST ONLY**
+				}
+			});
+			
+			pane3.add(enterPword, 0, 0);
+			pane3.add(password, 0, 1);
+			pane3.add(submit, 1, 1);
+			
+			Scene scene = new Scene(pane3, 300, 80);
+			stage.setScene(scene);
+			stage.show();
+
 		});
 		mainCategoryPane.add(boss, 0, 3);
+	}
+	
+	private boolean checkPassword(String string){
+		if(string == "gcu"){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	/**
