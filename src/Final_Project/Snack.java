@@ -25,14 +25,14 @@ public abstract class Snack extends Product implements Comparable{
 		
 	}
 	
-	public Snack(String productName, double price, int quantity, String dispenseLocation, int productId, String prodDescription, int calories) {
-		super(productName, price, quantity, dispenseLocation, productId, prodDescription);
+	public Snack(String productName, double price, int quantity, String dispenseLocation, int productId, String prodDescription, int dispenserID, int calories) {
+		super(productName, price, quantity, dispenseLocation, productId, prodDescription, dispenserID);
 		this.calories = calories;
 	}
 	
 	//replicate an existing Snack object
 	public Snack(Snack snack) {
-		super(snack.getName(), snack.getPrice(), snack.getQuantity(), snack.getDispenseLocation(), snack.getProductId(), snack.getDescription());
+		super(snack.getName(), snack.getPrice(), snack.getQuantity(), snack.getDispenseLocation(), snack.getProductId(), snack.getDescription(), snack.getDispenserID());
 		this.calories = snack.getCalories();
 	}
 	

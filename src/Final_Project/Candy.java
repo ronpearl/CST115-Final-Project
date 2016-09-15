@@ -24,14 +24,14 @@ public class Candy extends Snack {
 		
 	}
 	
-	public Candy(String productName, double price, int quantity, String dispenseLocation, int productId, String prodDescription, int calories, double servingSize) {
-		super(productName, price, quantity, dispenseLocation, productId, prodDescription, calories);
+	public Candy(String productName, double price, int quantity, String dispenseLocation, int productId, String prodDescription, int dispenserID, int calories, double servingSize) {
+		super(productName, price, quantity, dispenseLocation, productId, prodDescription, dispenserID, calories);
 		this.servingSize = servingSize;
 	}
 	
 	//replicate an existing Candy object
 	public Candy(Candy candy) {
-		super(candy.getName(), candy.getPrice(), candy.getQuantity(), candy.getDispenseLocation(), candy.getProductId(), candy.getDescription(), candy.getCalories());
+		super(candy.getName(), candy.getPrice(), candy.getQuantity(), candy.getDispenseLocation(), candy.getProductId(), candy.getDescription(), candy.getDispenserID(), candy.getCalories());
 		this.servingSize = candy.getServingSize();		
 	}
 	

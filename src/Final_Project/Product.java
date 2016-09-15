@@ -34,6 +34,7 @@ public abstract class Product extends ErrorManagement {
 	private int quantity; 				// quantity available of product
 	private int temporaryQuantity; 		// quantity available of product during transaction
 	private String prodDescription;		// Product description
+	private int dispenserID;			// ID of the dispenser which the item is located
 	private String dispenseLocation; 	// Location in the dispenser
 	private int productId; 				// unique ID for product (used for tracking)
 	
@@ -43,7 +44,7 @@ public abstract class Product extends ErrorManagement {
 	}
 	
 	//constructor, requires name and ID (default to $0.00 price and 1 quantity?)
-	public Product(String productName, double price, int quantity, String dispenseLocation, int productId, String prodDescription){
+	public Product(String productName, double price, int quantity, String dispenseLocation, int productId, String prodDescription, int dispID){
 		this.productName = productName;
 		this.price = price;
 		this.quantity = quantity;
@@ -51,6 +52,7 @@ public abstract class Product extends ErrorManagement {
 		this.prodDescription = prodDescription;
 		this.dispenseLocation = dispenseLocation;
 		this.productId = productId;
+		this.dispenserID = dispID;
 	}
 	
 	//setter methods
@@ -85,6 +87,11 @@ public abstract class Product extends ErrorManagement {
 		this.dispenseLocation = location;
 	}
 	
+	public void setDispenserID(int id){
+		this.dispenserID = id;
+	}
+	
+	
 	//getter methods
 	public String getName() {
 		return productName;
@@ -112,6 +119,10 @@ public abstract class Product extends ErrorManagement {
 	
 	public String getDispenseLocation(){
 		return dispenseLocation;
+	}
+	
+	public int getDispenserID(){
+		return dispenserID;
 	}
 
 	
@@ -148,7 +159,7 @@ public abstract class Product extends ErrorManagement {
 	@Override
 	public String toString(){
 		return "Product Name: " + productName + ", Price: " + price + ", Quantity: " + quantity + 
-				", Dispenser Location: " + dispenseLocation + ", Product ID: " + productId;
+				", Dispenser Location: " + dispenseLocation + ", Product ID: " + productId + ", Dispenser ID: " + dispenserID;
 	}
 
 }

@@ -24,13 +24,13 @@ public class Chips extends Snack {
 		
 	}
 	
-	public Chips(String productName, double price, int quantity, String dispenseLocation, int productId, String prodDescription, int calories, boolean baked){
-		super(productName, price, quantity, dispenseLocation, productId, prodDescription, calories);
+	public Chips(String productName, double price, int quantity, String dispenseLocation, int productId, String prodDescription, int dispenserID, int calories, boolean baked){
+		super(productName, price, quantity, dispenseLocation, productId, prodDescription, dispenserID, calories);
 		this.baked = baked;		
 	}
 	
 	public Chips(Chips chips){
-		super(chips.getName(), chips.getPrice(), chips.getQuantity(), chips.getDispenseLocation(), chips.getProductId(), chips.getDescription(), chips.getCalories());
+		super(chips.getName(), chips.getPrice(), chips.getQuantity(), chips.getDispenseLocation(), chips.getProductId(), chips.getDescription(), chips.getDispenserID(), chips.getCalories());
 		this.baked = chips.getBaked();
 	}
 	

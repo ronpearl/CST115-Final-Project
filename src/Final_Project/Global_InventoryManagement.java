@@ -11,6 +11,7 @@ import com.opencsv.CSVReader;
 public class Global_InventoryManagement extends Product implements Comparable {
 	
 	ArrayList<Product> allProducts = new ArrayList<Product>();
+	ArrayList<Product> nameSearchResults = new ArrayList<Product>();
 	
 	Global_InventoryManagement() {
 		
@@ -70,7 +71,7 @@ public class Global_InventoryManagement extends Product implements Comparable {
 //				System.out.print(inventory1List.get(i)[10] + " : "); // Baked?
 //				System.out.print(inventory1List.get(i)[11] + " : "); // Pack Size
 //				System.out.print(inventory1List.get(i)[12] + " : "); // Sugarfree?
-//				System.out.println(inventory1List.get(i)[13] + " : "); // Machine Number
+//				System.out.println(inventory1List.get(i)[13] + " : "); // Machine Number / Dispenser ID
 			}
 			
 			for (int i = 0; i < inventory2List.size(); i++) {
@@ -107,8 +108,16 @@ public class Global_InventoryManagement extends Product implements Comparable {
 		recursiveSortQty(allProducts, 0, allProducts.size());
 		
 		// Recursive search for product by specific name
-		recursiveSearchByName("Reeses");
+		recursiveSearchByName("Reeses", allProducts, 0, allProducts.size());
+		System.out.println("-------------- Name Search Results --------------");
 		
+		if (nameSearchResults.size() > 0) {
+			for (Product prod : nameSearchResults) {
+				System.out.println(prod);
+			}
+		}
+
+		System.out.println("-------------- Sorted Products --------------");
 		for (Product prod : allProducts) {
 			System.out.println(prod.getName() + " : " + prod.getQuantity());
 		}
@@ -127,7 +136,8 @@ public class Global_InventoryManagement extends Product implements Comparable {
 			Integer.parseInt(prod[4]), 
 			prod[5], 
 			Integer.parseInt(prod[1]), 
-			prod[6], 
+			prod[6],
+			Integer.parseInt(prod[13]),
 			Integer.parseInt(prod[7]), 
 			Double.parseDouble(prod[8])));
 	}
@@ -141,12 +151,13 @@ public class Global_InventoryManagement extends Product implements Comparable {
 	public void addChips(Dispenser dispenser, String[] prod) {
 		dispenser.addProduct(new Chips(
 			prod[2], 
-			Double.parseDouble(prod[3]), 
-			Integer.parseInt(prod[4]), 
+			Double.parseDouble(prod[3]),
+			Integer.parseInt(prod[4]),
 			prod[5], 
-			Integer.parseInt(prod[1]), 
-			prod[6], 
-			Integer.parseInt(prod[7]), 
+			Integer.parseInt(prod[1]),
+			prod[6],
+			Integer.parseInt(prod[13]),
+			Integer.parseInt(prod[7]),
 			Boolean.parseBoolean(prod[10])));
 	}
 	
@@ -159,11 +170,12 @@ public class Global_InventoryManagement extends Product implements Comparable {
 	public void addDrink(Dispenser dispenser, String[] prod) {
 		dispenser.addProduct(new Drink(
 			prod[2], 
-			Double.parseDouble(prod[3]), 
-			Integer.parseInt(prod[4]), 
+			Double.parseDouble(prod[3]),
+			Integer.parseInt(prod[4]),
 			prod[5], 
-			Integer.parseInt(prod[1]), 
-			prod[6], 
+			Integer.parseInt(prod[1]),
+			prod[6],
+			Integer.parseInt(prod[13]),
 			Integer.parseInt(prod[9])));
 	}
 	
@@ -176,12 +188,13 @@ public class Global_InventoryManagement extends Product implements Comparable {
 	public void addGum(Dispenser dispenser, String[] prod) {
 		dispenser.addProduct(new Gum(
 			prod[2], 
-			Double.parseDouble(prod[3]), 
-			Integer.parseInt(prod[4]), 
+			Double.parseDouble(prod[3]),
+			Integer.parseInt(prod[4]),
 			prod[5], 
-			Integer.parseInt(prod[1]), 
-			prod[6], 
-			Integer.parseInt(prod[7]), 
+			Integer.parseInt(prod[1]),
+			prod[6],
+			Integer.parseInt(prod[13]),
+			Integer.parseInt(prod[7]),
 			prod[11],
 			Boolean.parseBoolean(prod[12])));
 	}
@@ -257,8 +270,15 @@ public class Global_InventoryManagement extends Product implements Comparable {
 	}
 	
 	
-	public void recursiveSearchByName(String name) {
+	public void recursiveSearchByName(String name, ArrayList<Product> allProducts, int beginningIndex, int n) {
+		if (beginningIndex >= n)
+			return;
 		
+		if (allProducts.get(beginningIndex).getName().equals( name )) {
+			nameSearchResults.add(allProducts.get(beginningIndex));
+		}
+		
+		recursiveSearchByName(name, allProducts, beginningIndex + 1, n);
 	}
 	
 }
