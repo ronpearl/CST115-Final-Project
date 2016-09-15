@@ -108,13 +108,19 @@ public class Global_InventoryManagement extends Product implements Comparable {
 		recursiveSortQty(allProducts, 0, allProducts.size());
 		
 		// Recursive search for product by specific name
-		recursiveSearchByName("Reeses", allProducts, 0, allProducts.size());
+		String prodSearchName = "Reeses...";
+		
+		recursiveSearchByName(prodSearchName, allProducts, 0, allProducts.size());
 		System.out.println("-------------- Name Search Results --------------");
 		
 		if (nameSearchResults.size() > 0) {
+			System.out.println("Searched for " + prodSearchName);
+			
 			for (Product prod : nameSearchResults) {
-				System.out.println(prod);
+				System.out.println("Dispenser ID: " + prod.getDispenserID() + ", Qty: " + prod.getQuantity());
 			}
+		} else {
+			System.out.println("Product name " + prodSearchName + " was not found");
 		}
 
 		System.out.println("-------------- Sorted Products --------------");
