@@ -8,7 +8,7 @@ public class ErrorManagement {
 		
 	}
 	
-	public void sendAlert(AlertType alertType, String title, String header, String content) {
+	public static void sendAlert(AlertType alertType, String title, String header, String content) {
 		Alert alert = new Alert(alertType);
 		alert.setTitle(title);
 		alert.setHeaderText(header);

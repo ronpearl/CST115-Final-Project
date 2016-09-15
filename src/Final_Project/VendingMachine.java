@@ -25,6 +25,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos; 
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -152,12 +153,12 @@ public class VendingMachine extends Application {
 			Button submit = new Button("Submit");
 			
 			submit.setOnAction(e -> {
-				if( checkPassword(password.getText()) ){
+				if(checkPassword(password.getText())){
 					buildBossInterface();
 					stage.hide();
 				}else{
-					System.out.println("Incorrect password, please try again.");
-					System.out.println(password.getText()); //check correct password **TEST ONLY**
+					password.clear();
+					ErrorManagement.sendAlert(AlertType.ERROR, "Invalid Password", "Invalid Password", "The password entered is invalid. Please try again.");
 				}
 			});
 			
