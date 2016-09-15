@@ -1,9 +1,12 @@
 package Final_Project;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.opencsv.CSVReader;
@@ -103,18 +106,25 @@ public class Global_InventoryManagement extends Product implements Comparable {
 		allProducts.addAll(mainDisp.getProducts());
 		allProducts.addAll(dispenser2.getProducts());
 		
+		
+		
+		
+		// BELOW ARE DIRECTIVES FROM THE INSTRUCTOR. THESE MAY OR MAY NOT BE USED IN THE FUTURE,
+		// BUT FOR NOW WE ARE JUST DOING THE DIRECTIVES AND THEN PRINTING TO SYSTEM OUTPUT.
+		// DONE AT RUNTIME.
+		
 		// Recursive sort by name and qty
 		recursiveSortName(allProducts, 0, allProducts.size());
 		recursiveSortQty(allProducts, 0, allProducts.size());
 		
 		// Recursive search for product by specific name
-		String prodSearchName = "Reeses...";
+		String prodSearchName = "Reeses";
 		
 		recursiveSearchByName(prodSearchName, allProducts, 0, allProducts.size());
 		System.out.println("-------------- Name Search Results --------------");
 		
 		if (nameSearchResults.size() > 0) {
-			System.out.println("Searched for " + prodSearchName);
+			System.out.println("Searched for " + prodSearchName + "...");
 			
 			for (Product prod : nameSearchResults) {
 				System.out.println("Dispenser ID: " + prod.getDispenserID() + ", Qty: " + prod.getQuantity());
@@ -127,6 +137,7 @@ public class Global_InventoryManagement extends Product implements Comparable {
 		for (Product prod : allProducts) {
 			System.out.println(prod.getName() + " : " + prod.getQuantity());
 		}
+		
 	}
 	
 	/**
@@ -276,6 +287,16 @@ public class Global_InventoryManagement extends Product implements Comparable {
 	}
 	
 	
+	/**
+	 * recursiveSearchByName()
+	 * 
+	 * Recursively searches products ArrayList for a specific name
+	 * 
+	 * @param name
+	 * @param allProducts
+	 * @param beginningIndex
+	 * @param n
+	 */
 	public void recursiveSearchByName(String name, ArrayList<Product> allProducts, int beginningIndex, int n) {
 		if (beginningIndex >= n)
 			return;
@@ -284,7 +305,38 @@ public class Global_InventoryManagement extends Product implements Comparable {
 			nameSearchResults.add(allProducts.get(beginningIndex));
 		}
 		
+		// Write each recursive flow to the call stack file
+		try {
+			writeToCallStackFile();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
 		recursiveSearchByName(name, allProducts, beginningIndex + 1, n);
 	}
 	
+	
+	/**
+	 * writeToCallStackFile()
+	 * 
+	 * Writes the current process of the call stack to file
+	 * 
+	 * @throws FileNotFoundException
+	 */
+	public void writeToCallStackFile() throws FileNotFoundException {
+		File file = new File("callStack.txt");
+		
+		PrintWriter writer = new PrintWriter(file);
+		
+		if (file.exists()) {
+			writer.print("");
+		}
+		
+		for (StackTraceElement line : Thread.currentThread().getStackTrace()) {
+			writer.println(line.toString());
+		}
+		
+		writer.close();
+		
+	}
 }
