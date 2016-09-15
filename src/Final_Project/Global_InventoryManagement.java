@@ -8,10 +8,9 @@ import java.util.List;
 
 import com.opencsv.CSVReader;
 
-public class Global_InventoryManagement extends Product {
+public class Global_InventoryManagement extends Product implements Comparable {
 	
-	ArrayList<Product> vendMachine1 = new ArrayList<Product>();
-	ArrayList<Product> vendMachine2 = new ArrayList<Product>();
+	ArrayList<Product> allProducts = new ArrayList<Product>();
 	
 	Global_InventoryManagement() {
 		
@@ -70,7 +69,8 @@ public class Global_InventoryManagement extends Product {
 //				System.out.print(inventory1List.get(i)[9] + " : "); // Ounces
 //				System.out.print(inventory1List.get(i)[10] + " : "); // Baked?
 //				System.out.print(inventory1List.get(i)[11] + " : "); // Pack Size
-//				System.out.println(inventory1List.get(i)[12] + " : "); // Sugarfree?
+//				System.out.print(inventory1List.get(i)[12] + " : "); // Sugarfree?
+//				System.out.println(inventory1List.get(i)[13] + " : "); // Machine Number
 			}
 			
 			for (int i = 0; i < inventory2List.size(); i++) {
@@ -98,6 +98,20 @@ public class Global_InventoryManagement extends Product {
 			e.printStackTrace();
 		}
 		
+		// Combine the product objects
+		allProducts.addAll(mainDisp.getProducts());
+		allProducts.addAll(dispenser2.getProducts());
+		
+		// Recursive sort by name and qty
+		recursiveSortName(allProducts, 0, allProducts.size());
+		recursiveSortQty(allProducts, 0, allProducts.size());
+		
+		// Recursive search for product by specific name
+		recursiveSearchByName("Reeses");
+		
+		for (Product prod : allProducts) {
+			System.out.println(prod.getName() + " : " + prod.getQuantity());
+		}
 	}
 	
 	/**
@@ -171,4 +185,80 @@ public class Global_InventoryManagement extends Product {
 			prod[11],
 			Boolean.parseBoolean(prod[12])));
 	}
+	
+	
+	/**
+	 * recursiveSortName()
+	 * 
+	 * Sort by name recursively
+	 * 
+	 * @param allProducts
+	 * @param beginningIndex
+	 * @param n
+	 */
+	public void recursiveSortName(ArrayList<Product> allProducts, int beginningIndex, int n) {
+		if (beginningIndex >= n)
+			return;
+				
+		// Compare names
+		for (int i = 0; i < allProducts.size(); i++) {
+			// Make sure we don't compare the product to itself
+			if (i != beginningIndex) {
+				Product tempProd = allProducts.get(i);
+				
+				int result = allProducts.get(beginningIndex).compareName( tempProd );
+				
+				if (result == 1) {
+					allProducts.set(i, allProducts.get(beginningIndex));
+					allProducts.set(beginningIndex, tempProd);
+				}
+			}
+		}
+
+		recursiveSortName(allProducts, beginningIndex + 1, n);
+	}
+	
+	
+	/**
+	 * recursiveSortQty()
+	 * 
+	 * Sort by Qty recursively. MUST BE DONE AFTER recursiveSortName()
+	 * 
+	 * @param allProducts
+	 * @param beginningIndex
+	 * @param n
+	 */
+	public void recursiveSortQty(ArrayList<Product> allProducts, int beginningIndex, int n) {
+		if (beginningIndex >= n)
+			return;
+		
+		// Compare qty
+		for (int i = 0; i < allProducts.size(); i++) {
+			// Make sure we don't compare the product to itself
+			if (i != beginningIndex) {
+				Product tempProd = allProducts.get(i);
+				
+				if (allProducts.get(beginningIndex).getProductId() == tempProd.getProductId() ) {
+										
+					int result = allProducts.get(beginningIndex).compareQty( tempProd );
+					
+					if (result == 1) {
+						// Make sure index is higher, otherwise don't swap
+						if (beginningIndex < i) {
+							allProducts.set(i, allProducts.get(beginningIndex));
+							allProducts.set(beginningIndex, tempProd);
+						}
+					}
+				}
+			}
+		}
+		
+		recursiveSortQty(allProducts, beginningIndex + 1, n);
+	}
+	
+	
+	public void recursiveSearchByName(String name) {
+		
+	}
+	
 }

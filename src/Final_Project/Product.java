@@ -113,6 +113,37 @@ public abstract class Product extends ErrorManagement {
 	public String getDispenseLocation(){
 		return dispenseLocation;
 	}
+
+	
+	public int compareName(Product prod) {
+		if (this.getName().charAt(0) > prod.getName().charAt(0)) {
+			return 1;
+		} else if (this.getName().charAt(0) == prod.getName().charAt(0) ) {
+			if (this.getName().charAt(1) > prod.getName().charAt(1)) {
+				return 1;
+			} else if (this.getName().charAt(1) == prod.getName().charAt(1) ) {
+				if (this.getName().charAt(2) > prod.getName().charAt(2)) {
+					return 1;
+				} else {
+					return 0;
+				}
+			} else {
+				return 0;
+			}
+		} else {
+			return 0;
+		}
+	}
+	
+	
+	public int compareQty(Product prod) {
+		if (this.getQuantity() > prod.getQuantity()) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+	
 	
 	@Override
 	public String toString(){
