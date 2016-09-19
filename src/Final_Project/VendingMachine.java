@@ -29,6 +29,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -134,7 +135,7 @@ public class VendingMachine extends Application {
 			}
 		}
 		
-		Button boss = new Button("BOSS BUTTON");
+		Button boss = new Button("Control Panel");
 		boss.setOnAction(value -> {
 			Stage stage = new Stage();
 			stage.setTitle("Boss Password");
@@ -171,7 +172,15 @@ public class VendingMachine extends Application {
 			stage.show();
 
 		});
+		
+		Button restock = new Button("Restock");
+		restock.setOnAction(value -> {
+			Restock restock1 = new Restock();
+			Stage restockStage = new Stage();
+			restock1.start(restockStage);
+		});
 		mainCategoryPane.add(boss, 0, 3);
+		mainCategoryPane.add(restock, 1, 3);
 	}
 	
 	/**
@@ -419,6 +428,12 @@ public class VendingMachine extends Application {
 	public void buildBossInterface() {
 		// Clear the grid
 		mainCategoryPane.getChildren().clear();
+		
+		ScrollPane sp = new ScrollPane();
+		overallMainPane.setLeft(sp);
+		sp.setContent(mainCategoryPane);
+		sp.setPrefWidth(500);
+		sp.setPrefHeight(600);
 		
 		mainCategoryPane.setAlignment(Pos.CENTER);
 		mainCategoryPane.setPadding(new Insets(10, 10, 10, 10));
