@@ -52,7 +52,7 @@ public class VendingMachine extends Application {
 	Dispenser mainDisp = new Dispenser();
 	Dispenser dispenser2 = new Dispenser();
 	InventoryManagement invMngmnt = new InventoryManagement();
-	Global_InventoryManagement gloabl_invMngmnt = new Global_InventoryManagement();
+	Global_InventoryManagement global_invMngmnt = new Global_InventoryManagement();
 
 	String borderedItems = "-fx-border-color: gray;\n"
             + "-fx-border-insets: 5;\n"
@@ -83,7 +83,7 @@ public class VendingMachine extends Application {
 		// 	Candy:	1		Chips:	2		Drink:	3		Gum:	4
 		
 		try {
-			gloabl_invMngmnt.csvInventoryImport(mainDisp, dispenser2);
+			global_invMngmnt.csvInventoryImport(mainDisp, dispenser2);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -180,8 +180,16 @@ public class VendingMachine extends Application {
 			Stage restockStage = new Stage();
 			restock1.start(restockStage);
 		});
+		
+		Button queuedTransactions = new Button("Queued Transactions");
+		queuedTransactions.setOnAction(value -> {
+			// Test Queue
+			ProcessCustomerQueue theque = new ProcessCustomerQueue(mainDisp);
+		});
+		
 		mainCategoryPane.add(boss, 0, 3);
 		mainCategoryPane.add(restock, 1, 3);
+		mainCategoryPane.add(queuedTransactions, 0, 4);
 	}
 	
 	/**

@@ -8,4 +8,8 @@ package Final_Project;
 
 public class CustomerDisplay extends ProcessCustomerQueue {
 	
+	CustomerDisplay(Dispenser disp) {
+		super(disp);
+	}
+	
 }
