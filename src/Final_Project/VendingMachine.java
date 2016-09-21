@@ -63,6 +63,7 @@ public class VendingMachine extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
+		
 		// Create left side component
 		VBox leftSide = new VBox(15);
 		leftSide.setPadding(new Insets(15,15,15,15));
