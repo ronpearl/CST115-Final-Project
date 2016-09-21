@@ -18,7 +18,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import com.opencsv.CSVReader;
 
-public class ProcessCustomerQueue extends VendingMachine {
+public class ProcessCustomerQueue {
 	
 	protected Queue<String> theQueue = new java.util.LinkedList<>();
 	protected Dispenser disp = new Dispenser();
@@ -164,7 +164,10 @@ public class ProcessCustomerQueue extends VendingMachine {
 	
 	
 	public void processTransaction(Product prod) {
-		System.out.println("STILL NEED TO PROCESS TRANSACTION");
+		
+		// update quantity
+		prod.setQuantity( prod.getQuantity() - 1 );
+		
 	}
 	
 	
