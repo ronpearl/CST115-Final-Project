@@ -74,13 +74,21 @@ public class InventoryManagement extends Product {
 			
 			// Set image size and url based of prod.getname()
 	        switch (prod.getName()) {
-	            case "Doritos": prodImage = new ImageView(new Image("http://www.fritolay.com/images/default-source/blue-bag-image/doritos-nacho-cheese.png"));
+	            case "Doritos": prodImage = new ImageView(new Image("http://getbetterwellness.com/wp-content/uploads/2013/09/doritos.jpg"));
 					          	prodImage.setFitHeight(80);
 					        	prodImage.setFitWidth(60);
 					        	break;
 	            case "Cheetos": prodImage = new ImageView(new Image("http://www.scoopnheap.com/wp-content/uploads/2013/02/Cheetos.png"));
 					          	prodImage.setFitHeight(80);
 					        	prodImage.setFitWidth(60);
+					        	break;
+	            case "Corn Chips": prodImage = new ImageView(new Image("https://images.jet.com/md5/e8749580772b358818dd6544f8828c43"));
+					          	prodImage.setFitHeight(80);
+					        	prodImage.setFitWidth(80);
+					        	break;
+	            case "Flutes": prodImage = new ImageView(new Image("http://img1.21food.com/img/cj/2014/10/9/1412788858789310.jpg"));
+					          	prodImage.setFitHeight(80);
+					        	prodImage.setFitWidth(80);
 					        	break;
 	            case "Reeses":  prodImage = new ImageView(new Image("https://upload.wikimedia.org/wikipedia/en/9/97/Reese's-PB-Cups-Wrapper-Small.png"));
 					            prodImage.setRotate(90);
@@ -91,14 +99,46 @@ public class InventoryManagement extends Product {
 					            prodImage.setFitHeight(40);
 					        	prodImage.setFitWidth(80);
 					        	break;
-	            case "Coke":  prodImage = new ImageView(new Image("http://www.coca-colaproductfacts.com/content/dam/productfacts/us/productDetails/ProductImages/Coke_20oz.png"));
-					          prodImage.setFitHeight(90);
+	            case "Hubba Bubba": prodImage = new ImageView(new Image("http://www.sanza.co.uk/pics/8259.jpg"));
+					            prodImage.setFitHeight(40);
+					        	prodImage.setFitWidth(80);
+					        	break;
+	            case "Big League Chew": prodImage = new ImageView(new Image("https://www.studentnewsdaily.com/wp-content/uploads/2015/05/Big-League-Chew.png"));
+					            prodImage.setFitHeight(40);
+					        	prodImage.setFitWidth(80);
+					        	break;
+	            case "Coke":  prodImage = new ImageView(new Image("http://www.magictricks.com/assets/images/trickspix/airbornecokecan2.jpg"));
+					          prodImage.setFitHeight(60);
+					          prodImage.setFitWidth(60);
+					          break;
+	            case "Pepsi":  prodImage = new ImageView(new Image("http://i.bnet.com/blogs/new-pepsi-can-logo-bnet-april-2011.jpg"));
+					          prodImage.setFitHeight(80);
+					          prodImage.setFitWidth(60);
+					          break;
+	            case "Sprite":  prodImage = new ImageView(new Image("http://www.caffeineinformer.com/wp-content/caffeine/sprite.jpg"));
+					          prodImage.setFitHeight(80);
+					          prodImage.setFitWidth(40);
+					          break;				          
+	            case "Root Beer":  prodImage = new ImageView(new Image("http://www.caffeineinformer.com/wp-content/caffeine/aw-root-beer.jpg"));
+					          prodImage.setFitHeight(80);
 					          prodImage.setFitWidth(40);
 					          break;
-	            case "Tea":  prodImage = new ImageView(new Image("https://s-media-cache-ak0.pinimg.com/236x/76/55/d9/7655d918c9d08c66beecc8e47146da2a.jpg"));
+	            case "Green Tea":  prodImage = new ImageView(new Image("https://s-media-cache-ak0.pinimg.com/236x/76/55/d9/7655d918c9d08c66beecc8e47146da2a.jpg"));
 				             prodImage.setFitHeight(90);
 					         prodImage.setFitWidth(40);
 					         break;
+	            case "Snickers":  prodImage = new ImageView(new Image("https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Snickers_wrapped.png/240px-Snickers_wrapped.png"));
+	            				prodImage.setFitHeight(40);
+					        	prodImage.setFitWidth(80);
+					        	break;
+	            case "Kit-Kat":  prodImage = new ImageView(new Image("https://upload.wikimedia.org/wikipedia/en/5/5d/Kit-Kat-Wrapper-Small.jpg"));
+								prodImage.setFitHeight(40);
+					        	prodImage.setFitWidth(80);
+					        	break;
+	            case "Caramello":  prodImage = new ImageView(new Image("http://cdn.foodbeast.com/content/uploads/2016/06/caramello-chocolate-bar.jpg"));
+								prodImage.setFitHeight(40);
+					        	prodImage.setFitWidth(80);
+		         break;
 	        }
 		    
             prodImage.relocate(0, 0);
